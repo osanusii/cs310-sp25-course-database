@@ -1,32 +1,25 @@
 package edu.jsu.mcis.cs310.coursedb.dao;
 
-import java.sql.*;
-import com.github.cliftonlabs.json_simple.*;
-import java.util.ArrayList;
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.Jsoner;
+import java.sql.ResultSet;
 
 public class DAOUtility {
-    
-    public static final int TERMID_FA24 = 1;
-    
-    public static String getResultSetAsJson(ResultSet rs) {
-        
-        JsonArray records = new JsonArray();
-        
-        try {
-        
-            if (rs != null) {
+   public static final int TERMID_FA24 = 1;
 
-                // INSERT YOUR CODE HERE
+   public DAOUtility() {
+   }
 
-            }
-            
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return Jsoner.serialize(records);
-        
-    }
-    
+   public static String getResultSetAsJson(ResultSet rs) {
+      JsonArray records = new JsonArray();
+
+      try {
+         if (rs != null) {
+         }
+      } catch (Exception var3) {
+         var3.printStackTrace();
+      }
+
+      return Jsoner.serialize(records);
+   }
 }
