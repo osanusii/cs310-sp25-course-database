@@ -4,35 +4,32 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class DAOProperties {
+   private static final String PROPERTIES_FILE = "dao.properties";
+   private static final Properties PROPERTIES = new Properties();
+   private final String prefix;
 
-    private static final String PROPERTIES_FILE = "dao.properties";
-    private static final Properties PROPERTIES = new Properties();
-    
-    private final String prefix;
+   DAOProperties(String prefix) {
+      this.prefix = prefix;
+   }
 
-    static {
-        
-        InputStream file = DAOProperties.class.getResourceAsStream(PROPERTIES_FILE);
+   String getProperty(String key) {
+      String fullKey = this.prefix + "." + key;
+      String property = PROPERTIES.getProperty(fullKey);
+      if (property == null || property.trim().length() == 0) {
+         property = null;
+      }
 
-        try {
-            PROPERTIES.load(file);
-        }
-        catch (Exception e) { e.printStackTrace(); }
-        
-    }
+      return property;
+   }
 
-    DAOProperties(String prefix) { this.prefix = prefix; }
+   static {
+      InputStream file = DAOProperties.class.getResourceAsStream("dao.properties");
 
-    String getProperty(String key) {
-        
-        String fullKey = prefix + "." + key;
-        String property = PROPERTIES.getProperty(fullKey);
+      try {
+         PROPERTIES.load(file);
+      } catch (Exception var2) {
+         var2.printStackTrace();
+      }
 
-        if (property == null || property.trim().length() == 0)
-            property = null;
-
-        return property;
-        
-    }
-
+   }
 }
